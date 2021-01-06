@@ -14,10 +14,6 @@ namespace Pillow.Core.ApplicationService
         {
             this.productRepository = productRepository;
         }
-        public Product Get(int ProductId)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Product> GetChippestProduct()
         {
@@ -27,12 +23,18 @@ namespace Pillow.Core.ApplicationService
 
         public List<Product> GetNewestProduct()
         {
-            throw new NotImplementedException();
+            return productRepository.GetNewstProduct();
         }
 
-        public List<Product> ProductSearch(string category, int pageNumber, int PageSize)
+        public (List<Product>,int) ProductSearch(string q , string category, int pageNumber, int PageSize)
         {
-            throw new NotImplementedException();
+            return productRepository.GetFilterProducts(q, category, pageNumber, PageSize);
+        }
+
+ 
+        public Product Get(int ProductId)
+        {
+            return productRepository.Get(ProductId);
         }
     }
 }

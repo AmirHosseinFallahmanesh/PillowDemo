@@ -8,7 +8,7 @@ namespace Pillow.Core.Contracts
     {
         Product Get(int ProductId);
 
-        List<Product> GetFilterProducts(string category, int pageNumber, int PageSize);
+        (List<Product>, int Count) GetFilterProducts(string search, string category, int pageNumber, int PageSize);
 
         List<Product> GetChippestProduct(); 
         List<Product> GetNewstProduct(); 

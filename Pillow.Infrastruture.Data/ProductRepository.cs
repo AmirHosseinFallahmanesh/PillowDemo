@@ -16,8 +16,6 @@ namespace Pillow.Infrastruture.Data
         {
             this.context = context;
         }
-
-
         public Product Get(int ProductId)
         {
             return context.Products.Include(a=>a.Medias)
@@ -34,27 +32,34 @@ namespace Pillow.Infrastruture.Data
                 result.Add(context.Products.Include(a=>a.Medias).First(a => a.Price == minPrice));
 
             }
-            
-
             return result;
         }
 
-        public List<Product> GetFilterProducts(string category, int pageNumber, int PageSize)
+        public (List<Product>,int Count) GetFilterProducts(string search,string category, int pageNumber, int PageSize)
         {
           
             IQueryable<Product> query = context.Products.Include(a => a.Category).Include(a => a.Medias);
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(a => a.Name.Contains(search) || a.Description.Contains(search));
+            }
             if (category!="All")
             {
-               query.Where(a => a.Category.CategoryName == category).ToList();
+                query = query.Where(a => a.Category.CategoryName == category);
            
             }
-          
-          return query.Skip(pageNumber - 1).Take(PageSize).ToList();
+
+            var lengthQuery = query.ToList().Count;
+
+          return (query.Skip((pageNumber - 1)*PageSize).Take(PageSize).ToList(), lengthQuery);
         }
+
+       
 
         public List<Product> GetNewstProduct()
         {
-            return context.Products.Include(a=>a.Medias).OrderByDescending(a => a.InseretTime).ToList();
+            return context.Products.Include(a=>a.Medias)
+                .OrderByDescending(a => a.InseretTime).ToList();
         }
     }
 }
