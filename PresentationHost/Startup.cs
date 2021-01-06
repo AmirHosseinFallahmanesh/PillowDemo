@@ -39,7 +39,8 @@ namespace PresentationHost
             services.AddTransient<Cart>(sp => SessionCart.GetCart(sp));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProdctService, ProductService>();
-
+            services.AddScoped<IOrderRepository, OrederRepository>();
+            services.AddScoped<IOrderService, OrderService>();
        
 
 

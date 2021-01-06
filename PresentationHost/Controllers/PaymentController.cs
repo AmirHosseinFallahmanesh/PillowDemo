@@ -8,7 +8,7 @@ namespace PresentationHost.Controllers
 {
     public class PaymentController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Pay()
         {
             return View();
         }

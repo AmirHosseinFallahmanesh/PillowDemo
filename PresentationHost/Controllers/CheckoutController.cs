@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Pillow.Core.ApplicationService;
 using Pillow.Core.Entites;
 
 namespace PresentationHost.Controllers
@@ -11,7 +12,7 @@ namespace PresentationHost.Controllers
     {
         private readonly Cart cart;
 
-        public CheckoutController(Cart cart)
+        public CheckoutController(Cart cart,IOrderService)
         {
             this.cart = cart;
         }
@@ -32,8 +33,9 @@ namespace PresentationHost.Controllers
             if (ModelState.IsValid)
             {
                 order.Lines = cart.CartLines.ToList();
+                serv
                 cart.Clear();
-                return 
+                return RedirectToAction("Pay", "Payment");
             }
             return View(order);
         }
