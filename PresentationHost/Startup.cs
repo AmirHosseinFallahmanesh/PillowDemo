@@ -12,8 +12,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Pillow.Core.ApplicationService;
 using Pillow.Core.Contracts;
+using Pillow.Core.Entites;
 using Pillow.Infrastruture.Data;
 using Pillow.Infrastruture.Sql;
+using PresentationHost.Models;
 
 namespace PresentationHost
 {
@@ -33,21 +35,17 @@ namespace PresentationHost
             {
                 option.UseSqlServer(Configuration.GetConnectionString("ShopCS"));
             });
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTransient<Cart>(sp => SessionCart.GetCart(sp));
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProdctService, ProductService>();
 
+       
 
 
 
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -68,7 +66,7 @@ namespace PresentationHost
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

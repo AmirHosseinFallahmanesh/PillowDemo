@@ -19,7 +19,7 @@ namespace Pillow.Infrastruture.Data
         public Product Get(int ProductId)
         {
             return context.Products.Include(a=>a.Medias)
-                .Include(a=>a.Category)
+               
                 .First(a=>a.ProductID==ProductId);
         }
 

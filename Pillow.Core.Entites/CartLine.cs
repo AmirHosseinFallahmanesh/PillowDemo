@@ -1,8 +1,12 @@
-﻿namespace Pillow.Core.Entites
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+
+namespace Pillow.Core.Entites
 {
+    [NotMapped]
     public class CartLine
     {
-        public int CartLineID { get; set; }
+      
         public Product Product { get; set; }
         public int Quantity { get; set; }
     }
