@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Pillow.Core.Contracts;
 using Pillow.Core.Entites;
 using Pillow.Infrastruture.Sql;
 using System;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace Pillow.Infrastruture.Data
 {
-    public class ProductRepository
+    public class ProductRepository: IProductRepository
     {
         private readonly DemoContext context;
 
@@ -24,6 +25,19 @@ namespace Pillow.Infrastruture.Data
                 .First(a=>a.ProductID==ProductId);
         }
 
+        public List<Product> GetChippestProduct()
+        {
+            List<Product> result = new List<Product>();
+            foreach (var category in context.Categories.ToList())
+            {
+                int minPrice = context.Products.Include(a => a.Category).Where(a => a.Category==category).Min(a => a.Price);
+                result.Add(context.Products.Include(a=>a.Medias).First(a => a.Price == minPrice));
+
+            }
+            
+
+            return result;
+        }
 
         public List<Product> GetFilterProducts(string category, int pageNumber, int PageSize)
         {
@@ -38,5 +52,9 @@ namespace Pillow.Infrastruture.Data
           return query.Skip(pageNumber - 1).Take(PageSize).ToList();
         }
 
+        public List<Product> GetNewstProduct()
+        {
+            return context.Products.Include(a=>a.Medias).OrderByDescending(a => a.InseretTime).ToList();
+        }
     }
 }

@@ -9,5 +9,9 @@ namespace Pillow.Core.Contracts
         Product Get(int ProductId);
 
         List<Product> GetFilterProducts(string category, int pageNumber, int PageSize);
+
+        List<Product> GetChippestProduct(); 
+        List<Product> GetNewstProduct(); 
+        
     }
 }

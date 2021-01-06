@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Pillow.Core.ApplicationService;
+using Pillow.Core.Contracts;
+using Pillow.Infrastruture.Data;
 using Pillow.Infrastruture.Sql;
 
 namespace PresentationHost
@@ -30,6 +33,13 @@ namespace PresentationHost
             {
                 option.UseSqlServer(Configuration.GetConnectionString("ShopCS"));
             });
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProdctService, ProductService>();
+
+
+
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

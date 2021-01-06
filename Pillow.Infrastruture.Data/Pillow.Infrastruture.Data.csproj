@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Pillow.Core.Contracts\Pillow.Core.Contracts.csproj" />
     <ProjectReference Include="..\Pillow.Infrastruture.Sql\Pillow.Infrastruture.Sql.csproj" />
   </ItemGroup>
 

@@ -23,6 +23,9 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\Pillow.Core.ApplicationService\Pillow.Core.ApplicationService.csproj" />
+    <ProjectReference Include="..\Pillow.Core.Contracts\Pillow.Core.Contracts.csproj" />
+    <ProjectReference Include="..\Pillow.Infrastruture.Data\Pillow.Infrastruture.Data.csproj" />
     <ProjectReference Include="..\Pillow.Infrastruture.Sql\Pillow.Infrastruture.Sql.csproj" />
   </ItemGroup>
 
