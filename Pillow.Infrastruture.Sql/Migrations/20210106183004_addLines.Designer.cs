@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pillow.Infrastruture.Sql;
 
 namespace Pillow.Infrastruture.Sql.Migrations
 {
     [DbContext(typeof(DemoContext))]
-    partial class DemoContextModelSnapshot : ModelSnapshot
+    [Migration("20210106183004_addLines")]
+    partial class addLines
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,15 +86,9 @@ namespace Pillow.Infrastruture.Sql.Migrations
 
                     b.Property<string>("PaymentId");
 
-                    b.Property<string>("PaymentNote");
-
                     b.Property<string>("Phone");
 
-                    b.Property<string>("Surname");
-
                     b.Property<Guid>("UserId");
-
-                    b.Property<string>("ZipCode");
 
                     b.HasKey("OrderID");
 

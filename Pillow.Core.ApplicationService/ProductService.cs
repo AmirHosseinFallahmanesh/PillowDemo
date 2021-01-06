@@ -37,4 +37,21 @@ namespace Pillow.Core.ApplicationService
             return productRepository.Get(ProductId);
         }
     }
+
+
+    public class OrderService
+    {
+        private readonly IOrderRepository orderRepository;
+
+        public OrderService(IOrderRepository orderRepository)
+        {
+            this.orderRepository = orderRepository;
+        }
+
+
+        public void SaveOrder(Order order)
+        {
+            orderRepository.Save(order);
+        }
+    }
 }

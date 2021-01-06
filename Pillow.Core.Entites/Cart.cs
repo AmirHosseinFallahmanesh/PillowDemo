@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+
 using System.Linq;
 
 namespace Pillow.Core.Entites
 {
-    [NotMapped]
+ 
     public class Cart
     {
         private List<CartLine> lines = new List<CartLine>();
