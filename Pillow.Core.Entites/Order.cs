@@ -18,6 +18,7 @@ namespace Pillow.Core.Entites
         public string PaymentNote { get; set; }
         public string ZipCode { get; set; }
 
+        public string paymentToken { get; set; }
         public string PaymentId { get; set; }
         public DateTime? PaymentDate { get; set; }
     }

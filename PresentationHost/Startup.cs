@@ -16,6 +16,7 @@ using Pillow.Core.Entites;
 using Pillow.Infrastruture.Data;
 using Pillow.Infrastruture.Sql;
 using PresentationHost.Models;
+using PresentationHost.PaymentSystem;
 
 namespace PresentationHost
 {
@@ -35,6 +36,7 @@ namespace PresentationHost
             {
                 option.UseSqlServer(Configuration.GetConnectionString("ShopCS"));
             });
+            services.AddTransient<IPayment, PayIr>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<Cart>(sp => SessionCart.GetCart(sp));
             services.AddScoped<IProductRepository, ProductRepository>();

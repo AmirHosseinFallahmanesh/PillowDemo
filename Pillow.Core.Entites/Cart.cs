@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Pillow.Core.Entites
 {
- 
+
     public class Cart
     {
         private List<CartLine> lines = new List<CartLine>();
