@@ -43,9 +43,9 @@ namespace PresentationHost
             services.AddScoped<IProdctService, ProductService>();
             services.AddScoped<IOrderRepository, OrederRepository>();
             services.AddScoped<IOrderService, OrderService>();
-       
 
 
+           
 
             services.AddMemoryCache();
             services.AddSession();

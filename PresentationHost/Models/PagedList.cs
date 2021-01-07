@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PresentationHost.Models
 {
-    public class PagedList<T> 
+    public class PagedList<T>
     {
         public int CurrentPage { get; private set; }
         public int TotalPages { get; private set; }
@@ -12,15 +12,15 @@ namespace PresentationHost.Models
         public bool HasPrevious => CurrentPage > 1;
         public bool HasNext => CurrentPage < TotalPages;
         public List<T> Data { get; private set; }
-        public PagedList(List<T> items, int pageNumber, int pageSize,int total)
+        public PagedList(List<T> items, int pageNumber, int pageSize, int total)
         {
             TotalCount = total;
             PageSize = pageSize;
             CurrentPage = pageNumber;
             TotalPages = (int)Math.Ceiling(total / (double)pageSize);
             Data = items;
-           
+
         }
-       
+
     }
 }
