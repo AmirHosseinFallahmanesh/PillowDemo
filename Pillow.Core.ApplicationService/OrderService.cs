@@ -12,8 +12,6 @@ namespace Pillow.Core.ApplicationService
             this.orderRepository = orderRepository;
         }
 
-      
-
         public void PaymentDone(string token, int tId)
         {
             orderRepository.PaymentDone(token, tId);
