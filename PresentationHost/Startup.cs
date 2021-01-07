@@ -44,9 +44,6 @@ namespace PresentationHost
             services.AddScoped<IOrderRepository, OrederRepository>();
             services.AddScoped<IOrderService, OrderService>();
 
-
-           
-
             services.AddMemoryCache();
             services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
